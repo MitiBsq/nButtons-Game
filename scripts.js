@@ -54,15 +54,15 @@ function resultGenerator() {
 
 function calculateWinner(randomWinnerButton) {
     if (randomWinnerButton === playerChoose) {
-        gameScreen.textContent = "Corect! Ati castigat";
+        gameScreen.textContent = "CORRECT! You won";
         randomButton[randomWinnerButton].className = 'btn btn-lg btn-success';
         gameScreen.style.fontWeight = 'bold';
         game.style.backgroundColor = "YellowGreen";
         setTimeout(function () { gameOverMenu() }, 1.0 * 2000);
     }
     else {
-        gameScreen.textContent = "Gresit! Ati pierdut, ";
-        gameScreen.textContent += "raspunsul corect era butonul ";
+        gameScreen.textContent = "WRONG! You lost, ";
+        gameScreen.textContent += "the correct button was ";
         gameScreen.textContent += randomWinnerButton + 1;
         randomButton[randomWinnerButton].className = 'btn btn-lg btn-success';
         game.style.backgroundColor = "tomato";
