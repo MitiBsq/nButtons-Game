@@ -1,6 +1,7 @@
 //Setting the start game button
 const startGameButton = document.getElementById('startGame');
 startGameButton.addEventListener('click', () => { startGameButton.remove(); selectTNOB() });
+//Initializing the global variables
 const gameScreen = document.getElementById('gameScreen');
 const inputButtonNumber = document.getElementById('inputButton');
 const InputButtonPlace = document.getElementById('InputButtonPlace');
@@ -49,10 +50,6 @@ function buttonGenerator() {
 //Functions for generating the result
 function resultGenerator() {
     const randomWinnerButton = Math.floor(Math.random() * inputButtonNumber.value);
-    calculateWinner(randomWinnerButton);
-}
-
-function calculateWinner(randomWinnerButton) {
     if (randomWinnerButton === playerChoose) {
         gameScreen.textContent = "CORRECT! You won";
         randomButton[randomWinnerButton].className = 'btn btn-lg btn-success';
