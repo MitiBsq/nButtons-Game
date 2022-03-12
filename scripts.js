@@ -21,29 +21,37 @@ function selectTNOB() {
 //Creating the environment for the random buttons + the generator
 let randomButton = new Array(inputButtonNumber.value);
 function buttonGenerator() {
-    InputButtonPlace.style.visibility = "hidden"
-    gameScreen.style.fontSize = 'larger';
-    gameScreen.textContent = "Choose a button and find out if you have won";
-    for (let i = 0; i < inputButtonNumber.value; i++) {
-        randomButton[i] = document.createElement('button');
-        randomButton[i].textContent = i + 1;
-        randomButtonsPlace.appendChild(randomButton[i]);
-        //Styling the buttons black and white 
-        if (i % 2 === 0) {
-            randomButton[i].className = "btn btn-lg btn-dark";
+    //Fixing the 'not correct value' error
+    if (inputButtonNumber.value >= 2 && inputButtonNumber.value <= 10) {
+        InputButtonPlace.style.visibility = "hidden"
+        gameScreen.style.fontSize = 'larger';
+        gameScreen.textContent = "Choose a button and find out if you have won";
+        for (let i = 0; i < inputButtonNumber.value; i++) {
+            randomButton[i] = document.createElement('button');
+            randomButton[i].textContent = i + 1;
+            randomButtonsPlace.appendChild(randomButton[i]);
+            //Styling the buttons black and white 
+            if (i % 2 === 0) {
+                randomButton[i].className = "btn btn-lg btn-dark";
+            }
+            else {
+                randomButton[i].className = "btn btn-lg btn-light";
+            }
+            //The events of the buttons
+            randomButton[i].addEventListener('click', () => {
+                for (let i = 0; i < inputButtonNumber.value; i++) {
+                    randomButton[i].disabled = true;
+                };
+                randomButton[i].className = 'btn btn-lg btn-danger';
+                playerChoose = i;
+                resultGenerator();
+            });
         }
-        else {
-            randomButton[i].className = "btn btn-lg btn-light";
-        }
-        //The events of the buttons
-        randomButton[i].addEventListener('click', () => {
-            for (let i = 0; i < inputButtonNumber.value; i++) {
-                randomButton[i].disabled = true;
-            };
-            randomButton[i].className = 'btn btn-lg btn-danger';
-            playerChoose = i;
-            resultGenerator();
-        });
+    }
+    else {
+        gameScreen.innerHTML = "Incorect value";
+        gameScreen.style.color = "Red";
+        gameScreen.style.fontSize = "large"
     }
 }
 
