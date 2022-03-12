@@ -24,8 +24,9 @@ function buttonGenerator() {
     //Fixing the 'not correct value' error
     if (inputButtonNumber.value >= 2 && inputButtonNumber.value <= 10) {
         InputButtonPlace.style.visibility = "hidden"
-        gameScreen.style.fontSize = 'larger';
-        gameScreen.textContent = "Choose a button and find out if you have won";
+        gameScreen.innerHTML = "Choose a button and find out if you have won";
+        gameScreen.style.color = "Black";
+        gameScreen.style.fontSize = "large"
         for (let i = 0; i < inputButtonNumber.value; i++) {
             randomButton[i] = document.createElement('button');
             randomButton[i].textContent = i + 1;
