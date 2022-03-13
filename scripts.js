@@ -7,8 +7,6 @@ const inputButtonNumber = document.getElementById('inputButton');
 const inputButtonPlace = document.getElementById('inputButtonPlace');
 inputButtonPlace.style.visibility = 'hidden';
 const randomButtonsPlace = document.getElementById('randomButtonsPlace');
-//I  find out that it works without declaring it!!
-let playerChoose;
 
 //selectTNOB-select the number of buttons
 function selectTNOB() {
@@ -37,8 +35,7 @@ function gameGenerator() {
             //Styling the buttons black and white 
             if (i % 2 === 0) {
                 randomButton[i].className = "btn btn-lg btn-dark";
-            }
-            else {
+            } else {
                 randomButton[i].className = "btn btn-lg btn-light";
             }
             //The events of the buttons
@@ -50,8 +47,7 @@ function gameGenerator() {
                 showTheResult(randomWinnerButton, i);
             });
         }
-    }
-    else {
+    } else {
         gameScreen.innerHTML = "Incorect value";
         gameScreen.style.color = "Red";
         gameScreen.style.fontSize = "large"
@@ -66,8 +62,7 @@ function showTheResult(randomWinnerButton, playerChoose) {
         gameScreen.style.fontWeight = 'bold';
         game.style.backgroundColor = "YellowGreen";
         setTimeout(function () { gameOverMenu() }, 1.0 * 2000);
-    }
-    else {
+    } else {
         gameScreen.textContent = "WRONG! You lost, ";
         gameScreen.textContent += "the correct button was ";
         gameScreen.textContent += randomWinnerButton + 1;
