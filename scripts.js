@@ -4,26 +4,29 @@ startGameButton.addEventListener('click', () => { startGameButton.remove(); sele
 //Initializing the global variables
 const gameScreen = document.getElementById('gameScreen');
 const inputButtonNumber = document.getElementById('inputButton');
-const InputButtonPlace = document.getElementById('InputButtonPlace');
-InputButtonPlace.style.visibility = 'hidden';
+const inputButtonPlace = document.getElementById('inputButtonPlace');
+inputButtonPlace.style.visibility = 'hidden';
 const randomButtonsPlace = document.getElementById('randomButtonsPlace');
+//I  find out that it works without declaring it!!
+let playerChoose;
 
 //selectTNOB-select the number of buttons
 function selectTNOB() {
     gameScreen.textContent = "Insert the number of buttons wanted(Max 10)";
     gameScreen.style.fontSize = 'medium';
-    InputButtonPlace.style.visibility = 'visible';
+    inputButtonPlace.style.visibility = 'visible';
     //Button for submiting the number of buttons wanted;
     const chooseValue = document.getElementById('chooseValue');
-    chooseValue.addEventListener('click', buttonGenerator);
+    chooseValue.addEventListener('click', gameGenerator);
 }
 
 //Creating the environment for the random buttons + the generator
 let randomButton = new Array(inputButtonNumber.value);
-function buttonGenerator() {
+function gameGenerator() {
+    const randomWinnerButton = Math.floor(Math.random() * inputButtonNumber.value);
     //Fixing the 'not correct value' error
     if (inputButtonNumber.value >= 2 && inputButtonNumber.value <= 10) {
-        InputButtonPlace.style.visibility = "hidden"
+        inputButtonPlace.style.visibility = "hidden"
         gameScreen.innerHTML = "Choose a button and find out if you have won";
         gameScreen.style.color = "Black";
         gameScreen.style.fontSize = "large"
@@ -45,7 +48,22 @@ function buttonGenerator() {
                 };
                 randomButton[i].className = 'btn btn-lg btn-danger';
                 playerChoose = i;
-                resultGenerator();
+                if (randomWinnerButton === playerChoose) {
+                    gameScreen.textContent = "CORRECT! You won";
+                    randomButton[randomWinnerButton].className = 'btn btn-lg btn-success';
+                    gameScreen.style.fontWeight = 'bold';
+                    game.style.backgroundColor = "YellowGreen";
+                    setTimeout(function () { gameOverMenu() }, 1.0 * 2000);
+                }
+                else {
+                    gameScreen.textContent = "WRONG! You lost, ";
+                    gameScreen.textContent += "the correct button was ";
+                    gameScreen.textContent += randomWinnerButton + 1;
+                    randomButton[randomWinnerButton].className = 'btn btn-lg btn-success';
+                    game.style.backgroundColor = "tomato";
+                    gameScreen.style.fontWeight = 'bold';
+                    setTimeout(function () { gameOverMenu() }, 1.0 * 2000);
+                };
             });
         }
     }
@@ -53,27 +71,6 @@ function buttonGenerator() {
         gameScreen.innerHTML = "Incorect value";
         gameScreen.style.color = "Red";
         gameScreen.style.fontSize = "large"
-    }
-}
-
-//Functions for generating the result
-function resultGenerator() {
-    const randomWinnerButton = Math.floor(Math.random() * inputButtonNumber.value);
-    if (randomWinnerButton === playerChoose) {
-        gameScreen.textContent = "CORRECT! You won";
-        randomButton[randomWinnerButton].className = 'btn btn-lg btn-success';
-        gameScreen.style.fontWeight = 'bold';
-        game.style.backgroundColor = "YellowGreen";
-        setTimeout(function () { gameOverMenu() }, 1.0 * 2000);
-    }
-    else {
-        gameScreen.textContent = "WRONG! You lost, ";
-        gameScreen.textContent += "the correct button was ";
-        gameScreen.textContent += randomWinnerButton + 1;
-        randomButton[randomWinnerButton].className = 'btn btn-lg btn-success';
-        game.style.backgroundColor = "tomato";
-        gameScreen.style.fontWeight = 'bold';
-        setTimeout(function () { gameOverMenu() }, 1.0 * 2000);
     }
 }
 
