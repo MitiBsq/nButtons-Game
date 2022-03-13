@@ -47,7 +47,7 @@ function gameGenerator() {
                     randomButton[i].disabled = true;
                 };
                 randomButton[i].className = 'btn btn-lg btn-danger';
-                playerChoose = i; showTheResult(randomWinnerButton);
+                showTheResult(randomWinnerButton, i);
             });
         }
     }
@@ -59,7 +59,7 @@ function gameGenerator() {
 }
 
 //Function for showing the result of the round
-function showTheResult(randomWinnerButton) {
+function showTheResult(randomWinnerButton, playerChoose) {
     if (randomWinnerButton === playerChoose) {
         gameScreen.textContent = "CORRECT! You won";
         randomButton[randomWinnerButton].className = 'btn btn-lg btn-success';
