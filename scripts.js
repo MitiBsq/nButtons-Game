@@ -47,23 +47,7 @@ function gameGenerator() {
                     randomButton[i].disabled = true;
                 };
                 randomButton[i].className = 'btn btn-lg btn-danger';
-                playerChoose = i;
-                if (randomWinnerButton === playerChoose) {
-                    gameScreen.textContent = "CORRECT! You won";
-                    randomButton[randomWinnerButton].className = 'btn btn-lg btn-success';
-                    gameScreen.style.fontWeight = 'bold';
-                    game.style.backgroundColor = "YellowGreen";
-                    setTimeout(function () { gameOverMenu() }, 1.0 * 2000);
-                }
-                else {
-                    gameScreen.textContent = "WRONG! You lost, ";
-                    gameScreen.textContent += "the correct button was ";
-                    gameScreen.textContent += randomWinnerButton + 1;
-                    randomButton[randomWinnerButton].className = 'btn btn-lg btn-success';
-                    game.style.backgroundColor = "tomato";
-                    gameScreen.style.fontWeight = 'bold';
-                    setTimeout(function () { gameOverMenu() }, 1.0 * 2000);
-                };
+                playerChoose = i; showTheResult(randomWinnerButton);
             });
         }
     }
@@ -72,6 +56,26 @@ function gameGenerator() {
         gameScreen.style.color = "Red";
         gameScreen.style.fontSize = "large"
     }
+}
+
+//Function for showing the result of the round
+function showTheResult(randomWinnerButton) {
+    if (randomWinnerButton === playerChoose) {
+        gameScreen.textContent = "CORRECT! You won";
+        randomButton[randomWinnerButton].className = 'btn btn-lg btn-success';
+        gameScreen.style.fontWeight = 'bold';
+        game.style.backgroundColor = "YellowGreen";
+        setTimeout(function () { gameOverMenu() }, 1.0 * 2000);
+    }
+    else {
+        gameScreen.textContent = "WRONG! You lost, ";
+        gameScreen.textContent += "the correct button was ";
+        gameScreen.textContent += randomWinnerButton + 1;
+        randomButton[randomWinnerButton].className = 'btn btn-lg btn-success';
+        game.style.backgroundColor = "tomato";
+        gameScreen.style.fontWeight = 'bold';
+        setTimeout(function () { gameOverMenu() }, 1.0 * 2000);
+    };
 }
 
 //The last function where we restart the game
